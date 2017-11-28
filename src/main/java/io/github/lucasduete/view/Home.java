@@ -1,29 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.lucasduete.view;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import io.github.lucasduete.controller.Calculator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author lucasduete
- */
 public class Home extends javax.swing.JFrame {
+    
+    private void setNamesTable() {
+        
+        jTable1.setValueAt("A Equals B", 0, 0);
+        jTable1.setValueAt("B Equals A", 1, 0);
+        jTable1.setValueAt("A Disjoint B", 2, 0);
+        jTable1.setValueAt("B Disjoint A", 3, 0);
+        jTable1.setValueAt("A Intersect B", 4, 0);
+        jTable1.setValueAt("B Intersect A", 5, 0);
+        jTable1.setValueAt("A Touchs B", 6, 0);
+        jTable1.setValueAt("B Touchs A", 7, 0);
+        jTable1.setValueAt("A Crosses B", 8, 0);
+        jTable1.setValueAt("B Crosses A", 9, 0);
+        jTable1.setValueAt("A Within B", 10, 0);
+        jTable1.setValueAt("B Within A", 11, 0);
+        jTable1.setValueAt("A Contains B", 12, 0);
+        jTable1.setValueAt("B Contains A", 13, 0);
+        jTable1.setValueAt("A Overlaps B", 14, 0);
+        jTable1.setValueAt("B Overlaps A", 15, 0);
+        jTable1.setValueAt("A Covers B", 16, 0);
+        jTable1.setValueAt("B Covers A", 17, 0);
+        jTable1.setValueAt("A CoveredBy B", 18, 0);
+        jTable1.setValueAt("B CoveredBy A", 19, 0);
+        
+    }
+    
+    private void polulateTable(Geometry A, Geometry B) {
+        jTable1.setValueAt(Calculator.equalsAB(A, B), 0, 1);
+        jTable1.setValueAt(Calculator.equalsBA(B, A), 1, 1);        
+        
+        jTable1.setValueAt(Calculator.disjointAB(A, B), 2, 1);
+        jTable1.setValueAt(Calculator.disjointBA(B, A), 3, 1);
+        
+        jTable1.setValueAt(Calculator.intersectsAB(A, B), 4, 1);
+        jTable1.setValueAt(Calculator.intersectsBA(B, A), 5, 1);
+        
+        
+        jTable1.setValueAt(Calculator.touchsAB(A, B), 6, 1);
+        jTable1.setValueAt(Calculator.touchsBA(B, A), 7, 1);
+        
+        
+        jTable1.setValueAt(Calculator.crossesAB(A, B), 8, 1);
+        jTable1.setValueAt(Calculator.crossesBA(B, A), 9, 1);
+        
+        
+        jTable1.setValueAt(Calculator.withinAB(A, B), 10, 1);
+        jTable1.setValueAt(Calculator.withinBA(B, A), 11, 1);
+        
+        
+        jTable1.setValueAt(Calculator.containsAB(A, B), 12, 1);
+        jTable1.setValueAt(Calculator.containsBA(B, A), 13, 1);
+        
+        
+        jTable1.setValueAt(Calculator.overlapsAB(A, B), 14, 1);
+        jTable1.setValueAt(Calculator.overlapsBA(B, A), 15, 1);
+        
+        
+        jTable1.setValueAt(Calculator.coversAB(A, B), 16, 1);
+        jTable1.setValueAt(Calculator.coversBA(B, A), 17, 1);
+        
+        
+        jTable1.setValueAt(Calculator.coveredByAB(A, B), 18, 1);
+        jTable1.setValueAt(Calculator.coveredByBA(B, A), 19, 1);
+    }
 
     /**
      * Creates new form main
      */
     public Home() {
         initComponents();
+        setNamesTable();
     }
 
     /**
@@ -155,56 +209,8 @@ public class Home extends javax.swing.JFrame {
             return;
         }
         
-        jTable1.setValueAt("A Equals B", 0, 0);
-        jTable1.setValueAt(Calculator.equalsAB(A, B), 0, 1);
-        jTable1.setValueAt("B Equals A", 1, 0);
-        jTable1.setValueAt(Calculator.equalsBA(B, A), 1, 1);
-        
-        jTable1.setValueAt("A Disjoint B", 2, 0);
-        jTable1.setValueAt(Calculator.disjointAB(A, B), 2, 1);
-        jTable1.setValueAt("B Disjoint A", 3, 0);
-        jTable1.setValueAt(Calculator.disjointBA(B, A), 3, 1);
-        
-        jTable1.setValueAt("A Intersect B", 4, 0);
-        jTable1.setValueAt(Calculator.intersectsAB(A, B), 4, 1);
-        jTable1.setValueAt("B Intersect A", 5, 0);
-        jTable1.setValueAt(Calculator.intersectsBA(B, A), 5, 1);
-        
-        jTable1.setValueAt("A Touchs B", 6, 0);
-        jTable1.setValueAt(Calculator.touchsAB(A, B), 6, 1);
-        jTable1.setValueAt("B Touchs A", 7, 0);
-        jTable1.setValueAt(Calculator.touchsBA(B, A), 7, 1);
-        
-        jTable1.setValueAt("A Crosses B", 8, 0);
-        jTable1.setValueAt(Calculator.crossesAB(A, B), 8, 1);
-        jTable1.setValueAt("B Crosses A", 9, 0);
-        jTable1.setValueAt(Calculator.crossesBA(B, A), 9, 1);
-        
-        jTable1.setValueAt("A Within B", 10, 0);
-        jTable1.setValueAt(Calculator.withinAB(A, B), 10, 1);
-        jTable1.setValueAt("B Within A", 11, 0);
-        jTable1.setValueAt(Calculator.withinBA(B, A), 11, 1);
-        
-        jTable1.setValueAt("A Contains B", 12, 0);
-        jTable1.setValueAt(Calculator.containsAB(A, B), 12, 1);
-        jTable1.setValueAt("B Contains A", 13, 0);
-        jTable1.setValueAt(Calculator.containsBA(B, A), 13, 1);
-        
-        jTable1.setValueAt("A Overlaps B", 14, 0);
-        jTable1.setValueAt(Calculator.overlapsAB(A, B), 14, 1);
-        jTable1.setValueAt("B Overlaps A", 15, 0);
-        jTable1.setValueAt(Calculator.overlapsBA(B, A), 15, 1);
-        
-        jTable1.setValueAt("A Covers B", 16, 0);
-        jTable1.setValueAt(Calculator.coversAB(A, B), 16, 1);
-        jTable1.setValueAt("B Covers A", 17, 0);
-        jTable1.setValueAt(Calculator.coversBA(B, A), 17, 1);
-        
-        jTable1.setValueAt("A CoveredBy B", 18, 0);
-        jTable1.setValueAt(Calculator.coveredByAB(A, B), 18, 1);
-        jTable1.setValueAt("B CoveredBy A", 19, 0);
-        jTable1.setValueAt(Calculator.coveredByBA(B, A), 19, 1);
-        
+       
+        polulateTable(A, B);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
