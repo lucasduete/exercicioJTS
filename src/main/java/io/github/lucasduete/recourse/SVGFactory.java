@@ -1,5 +1,5 @@
 
-package io.github.lucasduete.controller;
+package io.github.lucasduete.recourse;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
