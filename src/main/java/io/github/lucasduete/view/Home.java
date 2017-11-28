@@ -4,6 +4,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
 import com.vividsolutions.jts.io.WKTReader;
 import io.github.lucasduete.controller.Calculator;
+import io.github.lucasduete.controller.ImageFactory;
 import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
@@ -115,6 +116,22 @@ public class Home extends javax.swing.JFrame {
                 {null, null},
                 {null, null},
                 {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null}
             },
             new String [] {
@@ -194,7 +211,7 @@ public class Home extends javax.swing.JFrame {
         final WKTReader reader = new WKTReader();
         
         try {            
-            A = reader.read(jLabel1.getText());
+            A = reader.read(jTextField1.getText());
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Geometria 1 Invalida", "Dados Invalidos", JOptionPane.INFORMATION_MESSAGE);
             ex.printStackTrace();
@@ -202,7 +219,7 @@ public class Home extends javax.swing.JFrame {
         }
         
         try {            
-            B = reader.read(jLabel2.getText());
+            B = reader.read(jTextField2.getText());
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Geometria 2 Invalida", "Dados Invalidos", JOptionPane.INFORMATION_MESSAGE);
             ex.printStackTrace();
@@ -211,6 +228,8 @@ public class Home extends javax.swing.JFrame {
         
        
         polulateTable(A, B);
+        ImageFactory.GeneratePNG(A, B);
+        ImageFactory.GenerateSVG(A, B);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
