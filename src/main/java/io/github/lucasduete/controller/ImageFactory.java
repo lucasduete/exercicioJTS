@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.MalformedURLException;
@@ -24,33 +25,22 @@ public class ImageFactory {
     public static File GeneratePNG(Geometry a, Geometry b) {
         
         
-        String svg_URI_input = null;
-        TranscoderInput input_svg_image = null;
-        OutputStream png_ostream = null;
-        TranscoderOutput output_png_image = null;
-        
         try {
-            svg_URI_input = Paths.get(NAME_FILE + ".svg").toUri().toURL().toString();
-            input_svg_image = new TranscoderInput(svg_URI_input); 
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-                
-        
-        try {
-            png_ostream = new FileOutputStream(NAME_FILE + ".png");
-            output_png_image = new TranscoderOutput(png_ostream); 
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-            return null;
-        }        
-        
-        PNGTranscoder my_converter = new PNGTranscoder();    
-        try {
-            my_converter.transcode(input_svg_image, output_png_image);
-        } catch (TranscoderException ex) {
+            String svg_URI_input = Paths.get(NAME_FILE + ".svg").toUri().toURL().toString();
+            TranscoderInput input_svg_image = new TranscoderInput(svg_URI_input);      
             
+            OutputStream png_ostream = new FileOutputStream(NAME_FILE + ".png");
+            TranscoderOutput output_png_image = new TranscoderOutput(png_ostream); 
+            
+            PNGTranscoder my_converter = new PNGTranscoder();        
+            
+            my_converter.transcode(input_svg_image, output_png_image);
+            
+            png_ostream.flush();
+            png_ostream.close(); 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
         
         return new File(NAME_FILE + ".png");
@@ -76,7 +66,7 @@ public class ImageFactory {
         
         builder.append("<path d=\"");
         builder.append(SVGFactory.getSVG(a));
-        builder.append("\" fill-opacity=\"1\" />");
+        builder.append("\" fill=\"red\" fill-opacity=\"1\" />");
         
         builder.append("<path d=\"");
         builder.append(SVGFactory.getSVG(b));
