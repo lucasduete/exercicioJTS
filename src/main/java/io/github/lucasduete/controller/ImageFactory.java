@@ -67,7 +67,7 @@ public class ImageFactory {
         
         builder.append("<svg xmlns=\"http://www.w3.org/2000/svg\" "
                 + "xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"400\" height=\"400\"");
-        builder.append("viewBox=\"");
+        builder.append(" viewBox=\"");
         builder.append(vb.getViewBox());
         builder.append("\">");
         
@@ -76,16 +76,19 @@ public class ImageFactory {
         
         builder.append("<path d=\"");
         builder.append(SVGFactory.getSVG(a));
-        builder.append("\" stroke=\"black\" stroke-width=\"5\" stroke-opacity=\"1\" fill=\"red\" fill-opacity=\"1\" />");
+        builder.append("\" fill-opacity=\"1\" />");
         
         builder.append("<path d=\"");
         builder.append(SVGFactory.getSVG(b));
-        builder.append("\" stroke=\"black\" stroke-width=\"5\" stroke-opacity=\"1\" fill=\"blue\" fill-opacity=\"1\" />");
+        builder.append("\" fill=\"blue\" fill-opacity=\"1\" />");
         
         builder.append("</svg>");
         
         File file = new File(NAME_FILE + ".svg");
         try {
+            if (file.exists()) 
+                file.delete();
+            
             file.createNewFile();
         
             BufferedWriter writer = new BufferedWriter(new PrintWriter(new FileWriter(file, true), true));
