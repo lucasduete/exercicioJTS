@@ -26,7 +26,7 @@ public class ImageFactory {
         
         
         try {
-            String svg_URI_input = Paths.get(NAME_FILE + ".svg").toUri().toURL().toString();
+            String svg_URI_input = GenerateSVG(a, b).getPath();
             TranscoderInput input_svg_image = new TranscoderInput(svg_URI_input);      
             
             OutputStream png_ostream = new FileOutputStream(NAME_FILE + ".png");
@@ -46,7 +46,7 @@ public class ImageFactory {
         return new File(NAME_FILE + ".png");
     }
     
-    public static File GenerateSVG(Geometry a, Geometry b) {
+    private static File GenerateSVG(Geometry a, Geometry b) {
         
         StringBuilder builder = new StringBuilder();
         
