@@ -38,7 +38,7 @@ public class ImageFactory {
             
             png_ostream.flush();
             png_ostream.close(); 
-        } catch (Exception ex) {
+        } catch (IOException | TranscoderException ex) {
             ex.printStackTrace();
             return null;
         }
@@ -56,7 +56,7 @@ public class ImageFactory {
         ViewBox vb = new ViewBox(a, b);
         
         builder.append("<svg xmlns=\"http://www.w3.org/2000/svg\" "
-                + "xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"400\" height=\"400\"");
+                + "xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"293\" height=\"256\"");
         builder.append(" viewBox=\"");
         builder.append(vb.getViewBox());
         builder.append("\">");
@@ -85,8 +85,8 @@ public class ImageFactory {
             
             writer.write(builder.toString());
             writer.close();
-        } catch (Exception fodasse) {
-            fodasse.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         
         
